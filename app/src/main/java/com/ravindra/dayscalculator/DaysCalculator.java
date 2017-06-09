@@ -35,6 +35,10 @@ public class DaysCalculator {
                 + monthInDaysOffset(monthofstart, monthofend)
                 + daysOffset(dayofStart, dayofend);
 
+        if(isLeap(yearofend) && monthofend == 3 && dayofend ==1 ) {
+            daysOffset++;
+        }
+
         return (daysOffset < 0) ? 0 : daysOffset;
     }
 
@@ -68,5 +72,9 @@ public class DaysCalculator {
             long daysoffsetEndYear = (int) (actualYearEnd / 4) + (actualYearEnd * 365);
             return daysoffsetEndYear - daysoffsetStartYear;
         }
+    }
+
+    private boolean isLeap(int leap) {
+        return ((leap % 4 == 0 && leap % 100 != 0) || leap % 400 == 0);
     }
 }

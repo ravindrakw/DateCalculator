@@ -30,6 +30,12 @@ public class DaysCalculatorTest {
     @Test
     public void testStartEndLeap() throws Exception {
         DaysCalculator daysCalculator = new DaysCalculator();
+        assertThat(daysCalculator.daysBetween("19830201", "19840301"), is(393L));
+    }
+
+    @Test
+    public void testLeapStartEnd() throws Exception {
+        DaysCalculator daysCalculator = new DaysCalculator();
         assertThat(daysCalculator.daysBetween("19840201", "19850301"), is(393L));
     }
 
