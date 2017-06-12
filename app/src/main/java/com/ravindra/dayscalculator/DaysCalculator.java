@@ -35,7 +35,7 @@ public class DaysCalculator {
                 + monthInDaysOffset(monthofstart, monthofend)
                 + daysOffset(dayofStart, dayofend);
 
-        if(isLeap(yearofend) && monthofend == 3 && dayofend ==1 ) {
+        if(isLeap(yearofend) && monthofstart == 2 && dayofStart < 29 ) {
             daysOffset++;
         }
 
