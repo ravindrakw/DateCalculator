@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnChangeDate)
     public void setCalculatedDays(Button button) {
         DaysCalculator daysCalculator = new DaysCalculator();
+        if (checkdaysFebend(daysCalculator)) return;
+        if (checkdaysFebstart(daysCalculator)) return;
+
         String startDate = String.valueOf(startdateyear.getValue())
                 + String.format("%02d", startdatemonth.getValue())
                 + String.format("%02d", startdateday.getValue());
@@ -80,5 +83,35 @@ public class MainActivity extends AppCompatActivity {
                 + String.format("%02d", enddatemonth.getValue())
                 +  String.format("%02d", enddateday.getValue());
         calculatedDays.setText(String.format("%d days", daysCalculator.daysBetween(startDate, endDate)));
+    }
+
+    private boolean checkdaysFebstart(DaysCalculator daysCalculator) {
+        if (startdatemonth.getValue() == 2) {
+            if (daysCalculator.isLeap(startdateyear.getValue())) {
+                if(startdateday.getValue() > 29) {
+                    calculatedDays.setText("February cannot have more that 29 days even in leap year");
+                    return true;
+                }
+            } else if(startdateday.getValue() > 28) {
+                calculatedDays.setText("February cannot have more that 28 days");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkdaysFebend(DaysCalculator daysCalculator) {
+        if (enddatemonth.getValue() == 2) {
+            if (daysCalculator.isLeap(enddateyear.getValue())) {
+                if(enddateday.getValue() > 29) {
+                    calculatedDays.setText("February cannot have more that 29 days even in leap year");
+                    return true;
+                }
+            } else if(enddateday.getValue() > 28) {
+                calculatedDays.setText("February cannot have more that 28 days");
+                return true;
+            }
+        }
+        return false;
     }
 }

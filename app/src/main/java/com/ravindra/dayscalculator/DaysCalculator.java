@@ -47,11 +47,11 @@ public class DaysCalculator {
      * @param dayofend just day of endDate
      * @return no of days difference between these two dates
      */
-    public int daysOffset(int dayofstart, int dayofend) {
+    private int daysOffset(int dayofstart, int dayofend) {
         return (dayofend - dayofstart - 1);
     }
 
-    public int monthInDaysOffset(int monthofstart, int monthofend) {
+    private int monthInDaysOffset(int monthofstart, int monthofend) {
         return elapsedMonthDays[monthofend - 1] - elapsedMonthDays[monthofstart - 1];
     }
 
@@ -62,7 +62,7 @@ public class DaysCalculator {
      * excluding the years. Find out no of leap years till then and add one day per each
      * leap year.
      */
-    public long yearsInDaysOffset(int yearofstart, int yearofend) {
+    private long yearsInDaysOffset(int yearofstart, int yearofend) {
         if (yearofend == yearofstart) {
             return 0;
         } else {
@@ -74,7 +74,7 @@ public class DaysCalculator {
         }
     }
 
-    private boolean isLeap(int leap) {
+    public boolean isLeap(int leap) {
         return ((leap % 4 == 0 && leap % 100 != 0) || leap % 400 == 0);
     }
 }
