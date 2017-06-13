@@ -97,15 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 calculatedDays.setText("February cannot have more that 28 days");
                 isValid = false;
             }
-        } else if (startdateday.getValue() <= 30) {
-           return true;
-        } else if (startdatemonth.getValue() % 2 == 0  && startdatemonth.getValue() != 8) {
-            if ((startdatemonth.getValue() + startdateday.getValue()) % 2 != 0) {
+        } else if (startdateday.getValue() == 31) {
+            if (startdatemonth.getValue() % 2 == 0 && startdatemonth.getValue() < 8) {
                 calculatedDays.setText("Not a valid date");
                 isValid = false;
-            }
-        } else {
-            if ((startdatemonth.getValue() + startdateday.getValue()) % 2 == 0) {
+            } else if (startdatemonth.getValue() % 2 != 0 && startdatemonth.getValue() >= 8) {
                 calculatedDays.setText("Not a valid date");
                 isValid = false;
             }
@@ -125,15 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 calculatedDays.setText("February cannot have more that 28 days");
                 isValid = false;
             }
-        } else if (enddateday.getValue() <= 30) {
-            return true;
-        } else if (enddatemonth.getValue() % 2 == 0  && enddatemonth.getValue() != 8) {
-            if ((enddatemonth.getValue() + enddateday.getValue()) % 2 != 0) {
+        } else if (enddateday.getValue() == 31) {
+            if (enddatemonth.getValue() % 2 == 0 && enddatemonth.getValue() < 8) {
                 calculatedDays.setText("Not a valid date");
                 isValid = false;
-            }
-        } else {
-            if ((enddatemonth.getValue() + enddateday.getValue()) % 2 == 0) {
+            } else if (enddatemonth.getValue() % 2 != 0 && enddatemonth.getValue() >= 8) {
                 calculatedDays.setText("Not a valid date");
                 isValid = false;
             }
