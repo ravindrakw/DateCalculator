@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.btnChangeDate)
     public void setCalculatedDays(Button button) {
         DaysCalculator daysCalculator = new DaysCalculator();
-        if (checkdaysFebend(daysCalculator)) return;
-        if (checkdaysFebstart(daysCalculator)) return;
+        if (!validStartDate(daysCalculator)) return;
+        if (!validEndDate(daysCalculator)) return;
 
         String startDate = String.valueOf(startdateyear.getValue())
                 + String.format("%02d", startdatemonth.getValue())
@@ -85,19 +85,60 @@ public class MainActivity extends AppCompatActivity {
         calculatedDays.setText(String.format("%d days", daysCalculator.daysBetween(startDate, endDate)));
     }
 
-    private boolean checkdaysFebstart(DaysCalculator daysCalculator) {
-        if (startdatemonth.getValue() == 2) {
+    private boolean validStartDate(DaysCalculator daysCalculator) {
+        boolean  isValid = true;
+        if (startdateday.getValue() > 28 && startdatemonth.getValue() == 2) {
             if (daysCalculator.isLeap(startdateyear.getValue())) {
                 if(startdateday.getValue() > 29) {
                     calculatedDays.setText("February cannot have more that 29 days even in leap year");
-                    return true;
+                    isValid = false;
                 }
             } else if(startdateday.getValue() > 28) {
                 calculatedDays.setText("February cannot have more that 28 days");
-                return true;
+                isValid = false;
+            }
+        } else if (startdateday.getValue() <= 30) {
+           return true;
+        } else if (startdatemonth.getValue() % 2 == 0  && startdatemonth.getValue() != 8) {
+            if ((startdatemonth.getValue() + startdateday.getValue()) % 2 != 0) {
+                calculatedDays.setText("Not a valid date");
+                isValid = false;
+            }
+        } else {
+            if ((startdatemonth.getValue() + startdateday.getValue()) % 2 == 0) {
+                calculatedDays.setText("Not a valid date");
+                isValid = false;
             }
         }
-        return false;
+        return isValid;
+    }
+
+    private boolean validEndDate(DaysCalculator daysCalculator) {
+        boolean  isValid = true;
+        if (enddateday.getValue() > 28 && enddatemonth.getValue() == 2) {
+            if (daysCalculator.isLeap(enddateyear.getValue())) {
+                if(enddateday.getValue() > 29) {
+                    calculatedDays.setText("February cannot have more that 29 days even in leap year");
+                    isValid = false;
+                }
+            } else if(enddateday.getValue() > 28) {
+                calculatedDays.setText("February cannot have more that 28 days");
+                isValid = false;
+            }
+        } else if (enddateday.getValue() <= 30) {
+            return true;
+        } else if (enddatemonth.getValue() % 2 == 0  && enddatemonth.getValue() != 8) {
+            if ((enddatemonth.getValue() + enddateday.getValue()) % 2 != 0) {
+                calculatedDays.setText("Not a valid date");
+                isValid = false;
+            }
+        } else {
+            if ((enddatemonth.getValue() + enddateday.getValue()) % 2 == 0) {
+                calculatedDays.setText("Not a valid date");
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 
     private boolean checkdaysFebend(DaysCalculator daysCalculator) {
