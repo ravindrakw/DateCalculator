@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (startdateday.getValue() == 31) {
             if (startdatemonth.getValue() % 2 == 0 && startdatemonth.getValue() < 8) {
-                calculatedDays.setText("Not a valid date");
+                calculatedDays.setText("Not a valid start date");
                 isValid = false;
             } else if (startdatemonth.getValue() % 2 != 0 && startdatemonth.getValue() >= 8) {
-                calculatedDays.setText("Not a valid date");
+                calculatedDays.setText("Not a valid start date");
                 isValid = false;
             }
         }
@@ -123,10 +123,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (enddateday.getValue() == 31) {
             if (enddatemonth.getValue() % 2 == 0 && enddatemonth.getValue() < 8) {
-                calculatedDays.setText("Not a valid date");
+                calculatedDays.setText("Not a valid end date");
                 isValid = false;
             } else if (enddatemonth.getValue() % 2 != 0 && enddatemonth.getValue() >= 8) {
-                calculatedDays.setText("Not a valid date");
+                calculatedDays.setText("Not a valid end date");
                 isValid = false;
             }
         }
